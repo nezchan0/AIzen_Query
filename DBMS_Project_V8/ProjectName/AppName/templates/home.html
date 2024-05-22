@@ -1,0 +1,143 @@
+{% extends 'base_nav.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block head_style %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-image: linear-gradient(45deg,#bfd754e3 0%,#411e0ae4 10%,#750e21e7,#31304D,#191919 );
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    .footer{
+        position: absolute; 
+        bottom: 0; 
+        width: 100%; 
+        background-color: rgba(0, 0, 0, 0.089); 
+        color: mintcream; 
+        padding: 10px 0;
+        p{
+            font-size: 1.3rem;
+        }
+    }
+    .container{
+        width: 100vw;
+        height: 91%;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .left-side{
+        width: 50%;
+        margin-left: 3rem;
+        text-align: center;
+        animation: slideIn 1s forwards ease-in-out;
+        h1{
+            font-size: 4rem;
+            color: rgb(255, 255, 255);
+            text-shadow: 1px 1px 15px rgb(0, 0, 0);
+            position: relative;
+            z-index: 1;
+        }
+        p{
+            font-size: 2rem;
+            color: mistyrose;
+            text-shadow: 1px 1px 5px rgb(0, 0, 0);
+            position: relative;
+            z-index: 1;
+        }
+    }
+    .photo{
+        width: 50%;
+        text-align: center;
+        input[type="button"], textarea{
+            width: 20rem;
+            height: 5rem;
+            font-size: 3rem;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgb(212, 176, 176);
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+            color: aliceblue;
+            background-image:linear-gradient(45deg,#03050eeb 20%, rgba(84, 41, 41, 0.929) 80%);
+            border-radius: 10px;
+            box-shadow: 1px 1px 8px rgb(130, 128, 128);
+        }
+        input:hover{
+            box-shadow: 5px 8px 10px rgb(0, 0, 0);
+            transform: translateY(-3px);
+        }
+    }
+    .right-side {
+        width: 50%;
+        text-align: center;
+    }
+
+    .right-side .imgBox {
+        width: 700px;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 50px;
+        margin-top: 50px;
+        opacity: 0; /* Initially set opacity to 0 */
+        transform: translateY(100%); /* Initially position below the viewport */
+        animation: slideIn 1s forwards ease-in-out; /* Use the defined animation */
+    }
+
+    .right-side .imgBox img {
+        max-width: 600px;
+    }
+
+    @keyframes slideIn {
+        0% {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock head_style %}
+
+{% block heading_name %}AI-Zen Query{% endblock heading_name %}
+{% block body %}
+
+
+<div class="container">
+    <div class="left-side">
+            <h1>Welcome to AI-Zen Query</h1>
+            <p>Ask the Database in English, Get SQL in Response</p>
+            <p>Empower your queries with the language of databases!</p>
+            <p>Start exploring now.</p>
+        <br />
+        <center>
+            <div class="photo">
+                <a href="{% url 'midl' %}"><input type="button" value="EXPLORE" /></a>
+            </div>
+        </center>
+    </div>
+    <div class="right-side">
+        <div class="imgBox">
+            <img src="/static/image/dbmst.png" class="starbucks">
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <center>
+        <p>&copy; 2023 AI-Zen Query. All rights reserved.</p>
+    </center>
+</div>
+
+{% endblock body %}

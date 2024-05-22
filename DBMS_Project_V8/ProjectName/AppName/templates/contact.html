@@ -1,0 +1,218 @@
+{% extends 'base_nav.html' %}
+
+{% block title %}Contact{% endblock title %}
+
+{% block head_style %}
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background-image: linear-gradient(45deg,#bfd754e3 0%,#411e0ae4 10%,#750e21e7,#31304D,#191919 );
+        overflow: hidden;
+    }
+    h1 {
+        color: rgb(255, 255, 255);
+        font-size: 2em;
+        text-align: center;
+        margin-top: 50px;
+    }
+    .container{
+        margin: 2%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        animation: slideIn 1s forwards ease-in-out;
+    }
+    .container-1 {
+        background-color: transparent;
+        width: 30%;
+        height: 75vh;
+        /*
+            box-shadow: 1px 1px 10px rgb(0, 0, 0);
+            border-radius: 10%;
+                */
+        perspective: 1000px;
+    }
+    .container-2 {
+        background-color: transparent;
+        width: 30%;
+        height: 75vh;
+        /*
+        box-shadow: 1px 1px 10px rgb(0, 0, 0);
+        border-radius: 10%;
+            */
+        perspective: 1000px;
+    }
+    .inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                transition: transform 0.8s;
+                transform-style: preserve-3d;
+    }
+    .container-1:hover .inner {
+        transform: rotateY(180deg);
+    }
+    .container-2:hover .inner {
+        transform: rotateY(180deg);
+    }
+    .front, .back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; 
+        backface-visibility: hidden;
+    }
+    .front {
+        background-color: transparent;
+        color: black;
+        align-self: center;
+    }
+        img{
+            margin: 20px;
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            box-shadow: 1px 2px 10px rgb(0, 0, 0);
+        }
+        h1{
+        color: rgb(255, 255, 255);
+        text-shadow: 1px 1px 10px rgb(0, 0, 0);
+        font-size: 2.2rem;
+        text-align: center;
+        margin-top: 10%;
+        }
+    
+    .back {
+        background-color: transparent;
+        color: white;
+        margin: 0.5%;
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        h2{
+            font-size: 1.6rem;
+            color: rgb(255, 255, 255);
+            text-shadow: 1px 1px 15px rgb(0, 0, 0);
+            text-align: center;
+            margin-top: 4%;
+        }
+        p{
+            font-size: 1.3rem;
+            color: mistyrose;
+            text-align: justify;
+            margin: 0 3%;
+        }
+        .photo {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            margin-bottom: 3%;
+        }
+    }
+    .footer{
+        position: absolute; 
+        bottom: 0; 
+        width: 100%; 
+        background-color: rgba(0, 0, 0, 0.089); 
+        box-shadow: 1px 1px 5px rgb(0, 0, 0);
+        color: white; 
+        padding: 10px 0;
+        p{
+            font-size: 1.2rem;
+        }
+    }
+    @keyframes slideIn {
+        0% {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+</style>
+{% endblock head_style %}
+
+{% block heading_name %}CONTACT{% endblock heading_name %}
+{% block body %}
+<div class="container">
+    <div class="container-1">
+        <div class="inner">
+            <div class="front">
+                <h1>FRONTEND DEVELOPER</h1>
+                <img src="/static/image/IMG20230909175406.jpg" >
+            </div>
+            <div class="back">
+                <h2>AKRITY KUMARI GUPTA <br>[1JS21CS018]<br /><br />kumariakrity13@gmail.com<br /></h2>
+                <p>I'm a 3rd year computer science student of JSSATEB.
+                I have worked on frontend on this project.</p>
+                <div class="photo">
+                    <a href="#">
+                        <img class="photo" src="/static/image/insta.png" style="width: 70%;
+                        height: 60%;
+                        border-radius: 10px;" >
+                    </a>
+                    <a href="#">
+                        <img class="photo" src="/static/image/git.png" style="width: 80%;
+                        height: 60%;
+                        border-radius: 5px;">
+                    </a>
+                    <a href="#">
+                        <img class="photo" src="/static/image/linkedin.png" style="width: 60%;
+                        height: 50%;
+                        border-radius: 2px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-2">
+        <div class="inner">
+            <div class="front">
+                <h1>BACKEND DEVELOPER</h1>
+                <img src="/static/image/alooo.jpg">
+            </div>
+            <div class="back">
+                <h2>ALOK KUMAR MAURYA<br> [1JS21CS019]<br /><br />alok05.maurya@gmail.com<br /></h2>
+                <p>I'm a 3rd year computer science student of JSSATEB.
+                I have worked on backend on this project.</p>
+                <div class="photo">
+                    <a href="#">
+                        <img class="photo" src="/static/image/insta.png" style="width: 70%;
+                        height: 60%;
+                        border-radius: 10px;">
+                    </a>
+                    <a href="#">
+                        <img class="photo" src="/static/image/git.png" style="width: 70%;
+                        height: 60%;
+                        border-radius: 5px;">
+                    </a>
+                    <a href="#">
+                        <img class="photo" src="/static/image/linkedin.png" style="width: 70%;
+                        height: 60%;
+                        border-radius: 2px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="footer">
+    <center>
+        <p>&copy; 2023 AI-Zen Query. All rights reserved.</p>
+    </center>
+</div>
+{% endblock body %}

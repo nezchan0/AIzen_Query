@@ -1,0 +1,303 @@
+{% extends 'base_nav.html' %}
+
+{% block title %}Ask AI{% endblock title %}
+
+{% block head_style %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-image: linear-gradient(45deg,#D14D72,#FFABAB,#FCC8D1,#ED5AB3,#E74646 );
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    body::-webkit-scrollbar {
+        display: none;
+    }
+    .parent_box {
+        display: flex;
+        flex-direction: column
+    }
+    .upper {
+        width: 100%;
+        height: 37vh;
+        display: flex
+    }
+    .upper_left {
+        background-color: transparent;
+        
+        /* box-shadow: 1px 1px 6px rgb(0, 0, 0); */
+        width: 35%;
+        margin: 1%;
+        input [type="text"],textarea {
+            width: 60%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            border: none;
+            background-color: #536374;
+            color: white;
+            border-radius: 5px;
+            font-size: 1.01rem;
+            margin: 1%;
+        }
+    input:hover {
+        box-shadow: 2px 3px 5px rgb(0, 0, 0);
+        transform: translateY(-2px);
+    }
+    }
+    .upper_right {
+        
+        background-color: rgba(255, 0, 0, 0.15);
+        box-shadow: 1px 1px 6px rgb(0, 0, 0);
+        /*background-color: green;*/
+        width: 65%;
+        overflow: auto;
+        position: relative;
+        display: grid;
+        place-items: center;
+        h4{
+            font-size: 2rem;
+        }
+    th {
+        font-size: 1.7rem;
+        text-align: center;
+    }
+
+    td {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 0, 0, 0.5); /* Semi-transparent red background (for example) */
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2; /* Adjust the z-index to position the overlay above other content */
+    }
+    .upper_right::-webkit-scrollbar {
+        display: none;
+    }
+    .EachTable_Division {
+        /*background-color: transparent;*/
+        background-color: rgba(255, 0, 0, 0.25);
+        box-shadow: 1px 1px 7px rgb(0, 0, 0);
+        border-radius: 3px;
+    }
+
+    .lower {
+        width: 100%;
+        height: 55vh;
+        display: flex
+    }
+    .lower_left {
+        background-color: transparent;
+        
+        display: grid;
+        place-items: center;
+        font-size: 1.1rem;
+        box-shadow: 1px 1px 6px rgb(0, 0, 0);
+        border-radius: 5%;
+        width: 15%;
+        overflow: auto;
+        h5{
+            text-align: center;
+            font-size: 1.7rem;
+            text-shadow: 1px 1px 8px rgb(132, 128, 128);
+        }
+         
+        input[type="checkbox"]{
+            width: 8%;
+            height:auto;
+            cursor: pointer;
+            box-shadow: 1px 1px 3px rgb(255, 255, 255);
+        }
+    input[type="submit"] {
+        width: 10rem;
+        height: 3rem;
+        font-size: 1.5rem;
+        font-weight: bolder;
+        text-shadow: 1px 1px 2px rgb(212, 176, 176);
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        color: rgb(0, 0, 0);
+        z-index: 1;
+        /*background-image:linear-gradient(45deg,rgba(156, 169, 81, 0.929) 20%, rgba(84, 41, 41, 0.929) 80%);*/
+        border-radius: 10px;
+        box-shadow: 1px 1px 8px rgb(0, 0, 0);
+    }
+        input:hover{
+            box-shadow: 2px 3px 5px rgb(0, 0, 0);
+            transform: translateY(-2px);
+        }
+    }
+    .lower_left::-webkit-scrollbar {
+        display: none;
+    }
+        
+    .lower_right {
+        background-color: transparent;
+        
+        width: 85%;
+        overflow-x: auto;
+        overflow-y: auto;
+        h1{
+            font-size: 2rem;
+            text-shadow: 1px 1px 2px rgb(73, 70, 70);
+            text-align: center;
+        }
+        th{
+            font-size: 1.7rem;
+            text-align: center;
+        }
+        td{
+            font-size: 1.4rem;
+            text-align: center;
+        }
+        table{
+            border-radius: 5px;
+            align-items: center;
+        }
+    }
+    
+    .lower_right::-webkit-scrollbar {
+        display: none;
+    }
+    .All_table {
+        padding: 10px;
+        display: flex;
+        gap: 20px;
+    }
+</style>
+
+{% endblock head_style %}
+
+{% block heading_name %}ASK AI{% endblock heading_name %}
+{% block body %}
+
+<div class="parent_box">
+    <form method="post" action="{% url 'dat' %}">
+        <div class="upper">
+            <div class="upper_left">
+
+                {% csrf_token %}
+                <br />
+                <div class="left-upper" style="display:flex;">
+                    <input type="text" name="Query_asked" placeholder="Ask the Database" style="width:60%;">
+                <input type="submit" name="submit_query" value="Ask AI" />
+                </div>
+                <br />
+                <div class="left-lower" style="display:flex;">
+                    <textarea name="Query_generated" rows="4" cols="50" placeholder="Query Generated...">{{ TextArea_data.textarea_field }}</textarea>
+                
+                <input type="submit" value="Submit" name="submit_textboxes">
+                </div>
+
+            </div>
+            <div class="upper_right">
+                <center>
+                    <h4>Result</h4>
+
+                    <div class="EachTable_Division">
+
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    {% for head in Display_Table_head %}
+                                    <th>{{head}}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for item in Display_table_data %}
+                                <tr>
+                                    {% for data in item%}
+                                    <td>{{data}}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </center>
+            </div>
+        </div>
+
+        <div class="lower">
+            <div class="lower_left">
+
+                <h5>Select Tables To be Queried</h5>
+
+
+                {% csrf_token %}
+                <ul style="list-style: none;">
+
+                    {% for table_name in AllTableNames %}
+                    <li>
+                        <input type="checkbox" name="checkbox_options" value="{{ table_name }}" {% if table_name in TablesSelected %} checked {% endif %}>
+                        <label>{{ table_name }}</label>
+
+                    </li>
+                    {% endfor %}
+
+                </ul>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Select Tables" name="submit_checkboxes" />
+
+
+            </div>
+            <div class="lower_right">
+                <center>
+                    <div class="All_table">
+                        <!--THe following is for all data-->
+                        {% for TableName,heading,records in zipped_data %}
+
+                        <div class="EachTable_Division">
+                            <h1>{{TableName}}</h1>
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        {% for head in heading %}
+                                        <th>{{head}}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for item in records %}
+                                    <tr>
+                                        {% for data in item%}
+                                        <td>{{data}}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+                </center>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}

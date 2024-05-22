@@ -1,0 +1,73 @@
+{% extends 'base_nav.html' %}
+
+{% block title %}Guide{% endblock title %}
+
+{% block head_style %}
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background-image: linear-gradient(45deg, #191919 0%,#31304D 10%, #750e21e7,#411e0ae4, #bfd754e3);
+        overflow: hidden;
+    }
+    h1 {
+        color: mistyrose;
+        font-size: 2em;
+        text-shadow: 1px 1px 8px rgb(0, 0, 0);
+        text-align: center;
+        margin-top: 50px;
+    }
+    .container{
+        animation: slideIn 1s forwards ease-in-out;
+    }
+    .box{
+        margin: 70px;
+        background-color: rgb(21, 28, 26);
+        width: 45vw;
+        height: 45vh;
+    }
+    .footer{
+        position: absolute; 
+        bottom: 0; 
+        width: 100%; 
+        background-color: rgba(0, 0, 0, 0.089); 
+        color: white; 
+        padding: 10px 0;
+        p{
+            font-size: 1.2rem;
+        }
+    }
+    @keyframes slideIn {
+        0% {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock head_style %}
+
+{% block heading_name %}GUIDE{% endblock heading_name %}
+{% block body %}
+
+<div class="container">
+    <center>
+        <h1>Youtube video Explaining how to use this website</h1>
+        <div class="box"></div>
+    </center>
+</div>
+
+
+<div class="footer">
+    <center>
+        <p>&copy; 2023 AI-Zen Query. All rights reserved.</p>
+    </center>
+</div>
+{% endblock body %}

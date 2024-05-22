@@ -1,0 +1,75 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AI-Zen Query | {% block title %} {% endblock title %}</title>
+    </head>{% block head_style %}
+
+    {% endblock head_style %}
+    <style>
+       
+        /* Add some basic styling to the navigation bar */
+        nav {
+            background-color: transparent;
+            overflow: hidden;
+            padding: 1px;
+        }
+        nav .logo {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding:10px;
+            font-size: 1.8em;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-align: right;
+            display: flex;
+            justify-content: space-between;
+        }
+       
+        .header{
+            width: 30%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+        nav a {
+            color: mistyrose;
+            font-size: 1.8rem;
+            text-decoration: none;
+        }
+
+        /* Change color on hover */
+        nav a:hover {
+            background-color: transparent;
+            font-weight: bolder;
+            text-shadow: 1px 1px 5px rgb(255, 255, 255);
+            color: black;
+        }    
+    </style>
+
+</head>
+<body>
+        <nav>
+            <ul>
+                <li><h4 class="logo" data-text="Neon Effect">{% block heading_name %}{% endblock heading_name %}</h4></li>
+                <div class="header">
+                <li><a href="{% url 'hom' %}">Home</a></li>
+                <li><a href="{% url 'guide' %}">Guide</a></li>
+                <li><a href="{% url 'con' %}">Contact</a></li>
+                <li><a href="{% url 'midl' %}">Explore</a></li>
+                </div>
+            </ul>
+        </nav>
+    
+    {% block body %}
+
+    {% endblock body %}
+
+
+</body>
+</html>

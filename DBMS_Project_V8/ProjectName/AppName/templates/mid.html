@@ -1,0 +1,187 @@
+{% extends 'base_nav.html' %}
+
+{% block title %}Explore{% endblock title %}
+
+{% block head_style %}
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background-image: linear-gradient(45deg, #191919 0%,#31304D 10%, #750e21e7,#411e0ae4, #bfd754e3);
+        overflow: hidden;
+    }
+    .container{
+        margin: 2%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        animation: slideIn 1s forwards ease-in-out;
+    }
+    .container-1{
+        background-color: transparent;
+        width: 30%;
+        height: 75vh;
+        border-radius: 10%;
+        box-shadow: 1px 1px 15px rgb(0, 0, 0); 
+        perspective: 1000px;
+    }
+    .container-2{
+        background-color: transparent;
+        width: 30%;
+        height: 75vh;
+        border-radius: 10%;
+        box-shadow: 1px 1px 15px rgb(0, 0, 0);
+        perspective: 1000px;
+    }
+    .inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+    .container-1:hover .inner {
+        transform: rotateY(180deg);
+    }
+    .container-2:hover .inner {
+        transform: rotateY(180deg);
+    }
+    .front, .back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; 
+        backface-visibility: hidden;
+    }
+    .front {
+        background-color: transparent;
+        color: black;
+        display: grid;
+        place-items: center;
+        h1 {
+            color: mistyrose;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 8px rgb(0, 0, 0);
+        }
+    }
+    .back {
+        background-color: transparent;
+        color: white;
+        display: grid;
+        place-items: center;
+        transform: rotateY(180deg);
+        scroll-behavior: smooth;
+        li{
+            font-size: 2rem;
+        }
+    }
+    input[type="submit"], textarea{
+        width: 15rem;
+        height: 3rem;
+        margin-top: 5%;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-shadow: 1px 1px 2px rgb(0, 0, 0);
+        cursor: pointer;
+        color: aliceblue;
+        background-image:linear-gradient(45deg,#272727eb 20%, rgba(69, 13, 13, 0.929) 80%);
+        border-radius: 10px;
+        box-shadow: 1px 1px 8px rgb(130, 128, 128);
+        }
+        input[type="file"], textarea{
+        width: 20rem;
+        height: 3rem;
+        margin-top: 5%;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-shadow: 1px 1px 2px rgb(0, 0, 0);
+        cursor: pointer;
+        color: aliceblue;
+        background-color: transparent;
+        }
+    .footer{
+        position: absolute; 
+        bottom: 0; 
+        width: 100%; 
+        background-color: rgba(0, 0, 0, 0.089); 
+        box-shadow: 1px 1px 5px rgb(0, 0, 0);
+        color: white; 
+        padding: 10px 0;
+        p{
+            font-size: 1.2rem;
+        }
+    }
+    @keyframes slideIn {
+        0% {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock head_style %}
+
+{% block heading_name %}CHOOSE DATABASE{% endblock heading_name %}
+{% block body %}
+
+<div class="container">
+    <div class="container-1">
+        <div class="inner">
+            <div class="front" style="text-align: center;">
+                <h1>SELECT DATABASE</h1>
+            </div>
+            <div class="back">
+                <form method="post" action="{% url 'setp' %}">
+                    {% csrf_token %}
+                    <ul style="list-style: none;">
+        
+                        {% for database_name in AllDatabaseNames %}
+                        <li>
+                            <input type="radio" name="database_options" value="{{ database_name }}" />
+                            <label>{{ database_name }}</label>
+                        </li>
+                        {% endfor %}
+        
+                    </ul>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="Select Database" name="select_database" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-2">
+        <div class="inner">
+            <div class="front">
+                <h1>UPLOAD SQL FILE</h1>
+            </div>
+            <div class="back">
+                <form action="{% url 'upl' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <br /><br />
+                    <label for="sql_file"></label>
+                    <br /><br />
+                    <input type="file" name="sql_file" id="sql_file" accept=".sql">
+                    <br />
+                    <br />
+                    <!-- Submit button -->
+                    <input type="submit" value="Upload" name="sql_file">
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <center>
+        <p>&copy; 2023 AI-Zen Query. All rights reserved.</p>
+    </center>
+</div>
+{% endblock body %}
